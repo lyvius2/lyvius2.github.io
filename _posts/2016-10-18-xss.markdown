@@ -2,7 +2,7 @@
 layout: post
 title:  "Filter를 사용한 XSS(Cross-Site Scripting) 처리"
 date:   2016-10-18 11:10:00
-categories: JAVA Spring
+categories: JAVA
 ---
 
 Spring 4로 간단한 개인 블로그 툴을 만들고 있다...

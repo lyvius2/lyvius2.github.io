@@ -6,11 +6,11 @@ markdown: kramdown
 highlighter: pygments
 logo: false
 paginate: 15
-baseurl: 'http://lyvius2.github.io/'
+baseurl: 'http://lyvius2.github.io'
 domain_name: 'http://lyvius2.github.io'
 google_analytics: 'UA-XXXXXXXX-X'
 gems: [jekyll-paginate]
 
 # Details for the RSS feed generator
-url:            'blog url'
-author:         'Your Name'
+url: 'http://lyvius2.github.io'
+author: 'walter.hwang'

@@ -1,6 +1,7 @@
 ---
 layout: default
 disqus: true
+comments: true
 archive: false
 post_class: post-template
 ---
@@ -81,7 +82,9 @@ post_class: post-template
             {% include share.html %}
 
             <!-- Disqus comments -->
-            {% include disqus.html %}
+            {% if page.disqus %}
+                {% include disqus.html %}
+            {% endif %}
 
         </footer>
 

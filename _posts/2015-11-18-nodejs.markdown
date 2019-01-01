@@ -1,0 +1,40 @@
+---
+layout: post
+title:  "Node.js 프로그래밍 과정 3일차"
+date:   2015-11-18 17:55:00
+categories: Node.js
+---
+
+**2015.11.18 T아카데미 Node.js 프로그래밍 강좌를 수강하면서 필기.**
+
+##### RESTful API
+**Http Method : 'PUT'**
+![js](./../../../../../images/20151118/10.png)
+아래와 같이 JSON 형태로 데이터를 보내 전체 수정을 한다.  
+`[{"title":"마션","director":"리들리스콧"},{"title":"토토로","director":"미야자키 하야오"}]​`
+![postman](./../../../../../images/20151118/11.png)
+아래는 일부 수정의 예제.
+![postman](./../../../../../images/20151118/12.png)
+~~응답 Action을 Redirect로 지정하면 무한 반복으로 오류가 나므로, res.send() 혹은 res.end() 로 마무리 해야한다.~~
+(DELETE도 동일한 현상)
+![js](./../../../../../images/20151118/14.png)
+위 현상에 대한 해결책으로, response 객체의 상태값을 '301'로 지정해주면 된다.
+![js](./../../../../../images/20151118/17.png)  
+**301 :** 신규 load  
+**302 :** Cash 데이터 사용
+ 
+##### 동적 파라메터 사용 시의 주의점
+
+{% highlight javascript %}
+app.get('/movies', function1);
+app.get('/movies/list', function2);
+app.get('/movies/:id', function3);
+{% endhighlight %}
+위 코드라인에서 `app.get('/movies/:id', function3);` 구문이 `app.get('/movies/list', function2);` 구문보다 먼저 있을 경우, URL `'/movies/list'`를 호출하여도 callback 메서드 function2는 작동하지 않는다.
+ 
+##### HTML 렌더링 : Jade
+![jade](./../../../../../images/20151118/15.png)  
++ 마크업태그 체계에 맞춰 줄바꿈과 들여쓰기를 제대로 해줘야 인식한다.
++ 'Tab'과 'Space'를 혼용하면 안된다.
+![jade](./../../../../../images/20151118/16.png)  
+form을 통해 delete, put 메서드를 보내려면 '_method'라는 이름의 입력컨트롤을 생성한 다음 value에 메서드 명칭을 지정하여 전송한다.

@@ -14,3 +14,5 @@ gems: [jekyll-paginate]
 # Details for the RSS feed generator
 url: 'http://lyvius2.github.io'
 author: 'walter.hwang'
+
+theme: jekyll-theme-architect

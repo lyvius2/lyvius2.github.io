@@ -1,21 +1,5 @@
-name: Walter's Blog
-description: 개발, 기술에 대한 끄적거림
-meta_description: "Walter's Blog. 개발, 기술에 대한 끄적거림"
-
-markdown: kramdown
-highlighter: pygments
-logo: false
-paginate: 15
-baseurl: 'http://lyvius2.github.io'
-domain_name: 'http://lyvius2.github.io'
-google_analytics: 'UA-XXXXXXXX-X'
-gems: [jekyll-paginate]
-
-# Details for the RSS feed generator
-url: 'http://lyvius2.github.io'
-author: 'walter.hwang'
-
-#theme: jekyll-theme-architect
-remote_theme: pages-themes/architect@v0.2.0
-plugins:
-  - jekyll-remote-theme
+title: Architect theme
+description: Architect is a theme for GitHub Pages.
+show_downloads: true
+google_analytics:
+theme: jekyll-theme-architect

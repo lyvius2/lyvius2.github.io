@@ -1,6 +1,6 @@
 name: Walter's Blog
-description: 개발, 기술에 대한 끄적거림
-meta_description: "Walter's Blog. 개발, 기술에 대한 끄적거림"
+description: 개발자 블로그입니다.
+meta_description: "Walter's Blog. 기술 블로그"
 
 markdown: kramdown
 highlighter: pygments

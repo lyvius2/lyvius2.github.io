@@ -3,8 +3,7 @@ layout: page
 title: About me 
 ---
 
-대학에서 정보시스템(MIS)를 전공하고 2010년 11월부터 웹 엔지니어로 일하고 있습니다.  
-여행사, 언론사를 거쳐 지금은 SI계열사에서 재직 중입니다.  
+대학에서 정보시스템(MIS)를 전공하고 2010년 11월부터 개발자로 일하고 있습니다.
 
 ##### Github
 + [https://github.com/lyvius2][github]
@@ -34,10 +33,6 @@ title: About me
 ##### 기타
 + 일본어능력시험(JLPT) 1급
 + 여행 블로그 : [https://blog.naver.com/lyvius2][blog]
-+ 콘솔 게임 매니아
-+ [토요타 아쿠아][aqua](프리우스C) 차주
-+ 맥북프로, VAIO Pro 11 사용
 
 [github]: https://github.com/lyvius2
 [blog]: https://blog.naver.com/lyvius2
-[aqua]: https://toyota.jp/aqua/

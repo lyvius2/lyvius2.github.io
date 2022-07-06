@@ -1,0 +1,46 @@
+---
+layout: post  
+title:  "데이터가 없으면 404 Status로 리턴하는 API 처리 문제"  
+date:   2022-04-20 11:43:00  
+categories: Spring Cloud
+---
+
+응답값이 없을 경우, 오류가 아닌데도 404로 응답하는 API가 있음.
+
+```bash
+[-666]. feign.FeignException$NotFound: [404] during [GET] to ...
+```
+
+```bash
+io.github.resilience4j.circuitbreaker.CallNotPermittedException: CircuitBreaker '' is OPEN and does not permit further calls
+```
+FeignClient 사용시 이렇게 (값이 없는) 404로 응답이 돌아오면 Exception 이 발생하여 Fallback Method가 실행되고 서킷브레이커가 적용되어 있을 경우 실패율에 합산되어 서킷이 OPEN되는 상황이 발생하게 된다.  
+→ 비즈니스 오류의 원인이 됨  
+해결방법은 404를 에러로 처리하지 않고 정상값으로 처리되도록 FeignClient를 설정한다.  
+(서킷브레이커에서 당 Exception을 ignore 해주는 방법도 있긴 함)
+![project](./../../../../../../../images/20220420/1.png)
+FeignClient의 decode404 옵션을 true 로 지정한다. 이렇게 하면 404로 값이 없을 때 decode가 빈 객체로 내려보내준다. 
+
+```java
+@FeignClient(name = "sample", url = "www.sample-api.com", fallbackFactory = SampleClientFallbackFactory.class, decode404 = true)
+public interface SampleClient {
+```
+
+결과값을 DTO로 리턴받을 경우, 404 발생시 매핑 실패로 인한 오류가 발생하므로,
+![project](./../../../../../../../images/20220420/2.png)
+
+Optional로 감싸주면 된다.
+```java
+@GetMapping("/sample/api")
+Optional<SampleDto> getSampleData()
+```
+
+* Boolean → false
+* byte[] → false
+* Collection → EmptyList
+* Iterator → EmptyIterator
+* List → EmptyList
+* Map → EmptyMap
+* Set → EmptySet
+* Optional → value가 없는 Optional
+* Stream → empty sequential stream

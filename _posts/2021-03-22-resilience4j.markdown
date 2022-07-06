@@ -5,6 +5,8 @@ date:   2021-03-22 11:31:00
 categories: JAVA SpringBoot SpringCloud 
 ---
 
+새로 API 프로젝트를 구축하는데 Circuit Breaker라는 것이 무엇인지 본격적으로 알려준 Netflix hystrix의 시대가 막을 내렸다는 것을 알게 되었고 Resilience4J를 사용하여 구현한 내용을 정리해보았다.
+
 ##### Spring Cloud 2020.0 Release
 * 2020-12-22 2020.0.0 버전 정식 Release
 * Spring Boot 2.4.x 버전을 기반으로 하며 하위 버전을 지원하지 않음

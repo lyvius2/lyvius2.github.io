@@ -26,10 +26,7 @@ FeignClient의 decode404 옵션을 true 로 지정한다. 이렇게 하면 404�
 public interface SampleClient {
 ```
 
-결과값을 DTO로 리턴받을 경우, 404 발생시 매핑 실패로 인한 오류가 발생하므로,
-![project](./../../../../../../../images/20220420/2.png)
-
-Optional로 감싸주면 된다.
+결과값을 DTO로 리턴받을 경우, 404 발생시 매핑 실패로 인한 오류가 발생하므로, Optional로 감싸주면 된다.
 ```java
 @GetMapping("/sample/api")
 Optional<SampleDto> getSampleData()

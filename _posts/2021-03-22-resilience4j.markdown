@@ -1,6 +1,6 @@
 ---
 layout: post  
-title:  "SpringBoot에 Thymeleaf, JSP 같이 쓰기"  
+title:  "Resilience4J를 사용한 Circuit Breaker 구현"  
 date:   2021-03-22 11:31:00  
 categories: JAVA SpringBoot SpringCloud 
 ---

@@ -75,6 +75,7 @@ build.gradle에 아래의 라이브러리 의존성을 추가한다.
 * org.springframework.boot:spring-boot-starter-aop
 * io.github.resilience4j:resilience4j-spring-boot2
 * (webflux 환경일 경우 추가) io.github.resilience4j:resilience4j-reactor
+
 ```groovy
 ext {
     set('springCloudVersion', "2020.0.1")
@@ -87,7 +88,9 @@ dependencies {
     implementation "io.github.resilience4j:resilience4j-spring-boot2:${resilience4jVersion}"
 }
 ```
+
 application.yml에 property값 등록으로 기본적인 설정을 한다.(하지 않으면 Default 설정으로 동작)
+
 ```yaml
 resilience4j:
   circuitbreaker:
@@ -98,7 +101,9 @@ resilience4j:
         failureRateThreshold: 50 # 실패율
         slidingWindowType: COUNT_BASED # COUNT_BASED는 마지막 n개의 호출 횟수
 ```
+
 API 요청 Client를 작성한다.(여기에서는 Feign Client를 사용)
+
 ```java
 @LoadBalancerClient(name = "sample", configuration = SampleLoadbalancerConfig.class)
 @FeignClient(name = "sample")
@@ -108,7 +113,9 @@ public interface SampleClient {
     Sample getUser(@PathVariable("id") String id);
 }
 ```
+
 Client 객체 의존성을 주입한 Wrapper 클래스를 생성하고, @CircuitBreaker 어노테이션으로 Circuit의 이름과 대체 작업(Fallback Method)을 명시한다.
+
 ```java
 @Slf4j
 @Component
@@ -132,6 +139,7 @@ public class SampleClientWrapper {
     }
 }
 ```
+
 확인
 
 * 실패율 임계점 50%, 집계에 필요한 최소 요청수 4회, COUNT_BASED로 설정하고 외부 API 요청 테스트
@@ -166,13 +174,17 @@ dependencies {
     implementation 'org.springframework.cloud:spring-cloud-starter-openfeign'
 }
 ````
+
 application.yml에 feign.circuitbreaker.enabled: true로 설정한다.
+
 ````yaml
 feign:
   circuitbreaker:
     enabled: true
 ````
+
 Java Config로 Resilience4J의 CircuitBreakerFactory Bean을 설정한다.
+
 ````java
 import io.github.resilience4j.circuitbreaker.CircuitBreakerConfig;
 import org.springframework.cloud.circuitbreaker.resilience4j.Resilience4JCircuitBreakerFactory;
@@ -203,8 +215,10 @@ public class Resilience4JConfig {
     }
 }
 ````
+
 API 요청을 수행할 Feign Client와 Fallback Method가 정의된 클래스를 생성한다.
 __Feign Client__
+
 ````java
 @FeignClient(name = "array", url = "http://localhost:3000", fallbackFactory= ArrayClientFallbackFactory.class)
 public interface ArrayClient {
@@ -212,7 +226,9 @@ public interface ArrayClient {
     List<Sample> getUsers();
 }
 ````
+
 __Fallback Factory__
+
 ````java
 @Slf4j
 @Component
@@ -227,6 +243,7 @@ public class ArrayClientFallbackFactory implements FallbackFactory<ArrayClient> 
     }
 }
 ````
+
 확인
 * 실패율 임계점 50%, 집계에 필요한 최소 요청수 4회, COUNT_BASED로 설정하고 외부 API 요청 테스트
 * API 요청을 2회 수행한 다음 API 서비스 Down
@@ -236,6 +253,7 @@ public class ArrayClientFallbackFactory implements FallbackFactory<ArrayClient> 
 구현 후 느낀 점
 * Feign과 유기적으로 잘 결합함 (Wrapper 클래스를 꼭 만들지 않아도 됨)
   * Wrapper 클래스를 만들어서 사용한 예제
+
 ````java
 @Slf4j
 @Component
@@ -258,6 +276,7 @@ public class SampleClientWrapper {
     }
 }
 ````
+
 * 기존 코드에 변경이 거의 일어나지 않는다.
 * Circuit Breaker, TimeLimiter 2개의 기능만 제공
 * Java Config로 설정한다.

@@ -99,6 +99,7 @@ dependencies {
     implementation 'io.awspring.cloud:spring-cloud-aws-messaging:2.4.1'
     implementation 'io.awspring.cloud:spring-cloud-starter-aws:2.4.1'
 }
+```
 
 2.application.yml에 AWS Credential 과 Region 관련 설정을 넣는다.
 

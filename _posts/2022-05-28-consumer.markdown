@@ -2,7 +2,7 @@
 layout: post  
 title:  "Queue 메시지를 받아 처리하는 Consumer 개발"  
 date:   2022-05-28 10:54:00  
-categories: AWS, Spring Cloud AWS, Kafka
+categories: AWS SpringCloudAWS Kafka
 ---
 
 Producer를 개발해서 메시지를 Queue에 보낼 수 있게 해놓았으면 이게 그 메시지를 받아 DB에 적재하든지, 아니면 다른 방법으로 활용하기 위한 Consumer를 개발해야 할 것이다.  

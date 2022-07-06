@@ -2,7 +2,7 @@
 layout: post  
 title:  "MSK vs SQS"  
 date:   2022-05-25 18:27:00  
-categories: AWS, Spring Cloud AWS
+categories: AWS SpringCloudAWS
 ---
 
 애플리케이션들을 AWS 클라우드로 이관하고 Pub/Sub 체계를 구축하는데 있어서 우리는 이미 온프레미스 환경에서 Kafka를 사용한 경험이 있었기에 AWS에서 SaaS형태로 제공하는 MSK와 SQS를 놓고 검토를 하게 되었는데 두 솔루션의 장단점이 명확하므로 여기에 정리를 해본다.

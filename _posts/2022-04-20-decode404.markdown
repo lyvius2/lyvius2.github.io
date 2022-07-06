@@ -2,7 +2,7 @@
 layout: post  
 title:  "데이터가 없으면 404 Status로 리턴하는 API 처리 문제"  
 date:   2022-04-20 11:43:00  
-categories: Spring Cloud
+categories: SpringCloud
 ---
 
 응답값이 없을 경우, 오류가 아닌데도 404로 응답하는 API가 있음.

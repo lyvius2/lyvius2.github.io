@@ -2,7 +2,7 @@
 layout: post  
 title:  "Queue에 메시지 전송하는 Producer 개발"  
 date:   2022-05-27 13:22:00  
-categories: AWS, Spring Cloud AWS, Kafka
+categories: AWS SpringCloudAWS Kafka
 ---
 
 Kafka와 SQS에 메시지를 발송하는 Producer의 개발 방법이다.  

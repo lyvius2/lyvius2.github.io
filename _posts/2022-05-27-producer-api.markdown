@@ -11,7 +11,7 @@ SpringBoot로 기본적인 API 프로젝트를 만들고 Controller에서 호출
 
 ##### Kafka Producer
 
-1. build.gradle 에 spring-kafka 라이브러리 의존성을 추가한다.
+1.build.gradle 에 spring-kafka 라이브러리 의존성을 추가한다.
 
 ```groovy
 dependencies {
@@ -20,7 +20,7 @@ dependencies {
 }
 ```
 
-2. application.yml에 메시지를 송신할 Kafka Broker의 서버 정보를 설정한다.
+2.application.yml에 메시지를 송신할 Kafka Broker의 서버 정보를 설정한다.
 
 ```yaml
 spring:
@@ -29,7 +29,7 @@ spring:
       bootstrap-servers: kafka.01.server.com:9092,kafka.02.server.com:9092,kafka.03.server.com:9092
 ```
 
-3. Service 클래스를 하나 만들고 KafkaTemplate 빈 의존성을 주입한다.
+3.Service 클래스를 하나 만들고 KafkaTemplate 빈 의존성을 주입한다.
 
 ```java
 @Service
@@ -44,7 +44,7 @@ public class KafkaSendingService {
 
 KafkaTemplate 빈은 자동 생성되므로 Override 할 필요가 없다면 따로 생성하지 않아도 된다.
 
-4. TOPIC명과 메시지 내용을 매개변수로 받아 Kafka Broker로 보내는 메서드를 아래와 같이 작성한다.
+4.TOPIC명과 메시지 내용을 매개변수로 받아 Kafka Broker로 보내는 메서드를 아래와 같이 작성한다.
 
 ```java
 public void sendMessage(String topicName, String message) {
@@ -68,7 +68,7 @@ Controller나 다른 요소에서 위 sendMessage 메서드를 호출하면 메�
 
 ##### SQS Producer
 
-1. build.gradle에 Spring Cloud AWS의 라이브러리 중 SQS에 관련된 요소의 의존성을 추가한다.
+1.build.gradle에 Spring Cloud AWS의 라이브러리 중 SQS에 관련된 요소의 의존성을 추가한다.
 
 ```groovy
 dependencies {
@@ -79,7 +79,7 @@ dependencies {
 }
 ```
 
-2. application.yml에 AWS Credential 과 Region 관련 설정을 넣는다.
+2.application.yml에 AWS Credential 과 Region 관련 설정을 넣는다.
 
 ```yaml
 cloud:
@@ -114,7 +114,7 @@ public AmazonSQS amazonSQS() {
 }
 ```
 
-3. QueueMessagingTemplate 빈을 생성한다.
+3.QueueMessagingTemplate 빈을 생성한다.
 
 ```java
 import com.amazonaws.services.sqs.AmazonSQS;
@@ -132,7 +132,7 @@ public class SqsConfig {
 }
 ```
 
-4. Service 클래스를 하나 만들고 QueueMessagingTemplate 빈 의존성을 주입한다.
+4.Service 클래스를 하나 만들고 QueueMessagingTemplate 빈 의존성을 주입한다.
 
 ```java
 @Service
@@ -145,7 +145,7 @@ public class SqsSendingService {
 }
 ```
 
-5. Queue 이름과 메시지를 매개변수로 받아 SQS로 보내는 메서드를 아래와 같이 작성한다.
+5.Queue 이름과 메시지를 매개변수로 받아 SQS로 보내는 메서드를 아래와 같이 작성한다.
 
 ```java
 public void sendMessage(String queueName, String message) {

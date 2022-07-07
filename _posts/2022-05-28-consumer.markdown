@@ -233,9 +233,4 @@ public SimpleMessageListenerContainer simpleMessageListenerContainer(AmazonSQSAs
     simpleMessageListenerContainer.setMaxNumberOfMessages(10);  // Consume 1회시 수신할 수 있는 최대의 메시지 갯수 : 10이 Maximun 값
     return simpleMessageListenerContainer;
 }
-
-@Bean
-public QueueMessageHandler queueMessageHandler(List<MessageConverter> messageConverters, Environment environment) {
-    return new CustomQueueMessageHandler(messageConverters, environment);
-}
 ```

@@ -47,21 +47,21 @@ KafkaTemplate 빈은 자동 생성되므로 Override 할 필요가 없다면 따
 4.TOPIC명과 메시지 내용을 매개변수로 받아 Kafka Broker로 보내는 메서드를 아래와 같이 작성한다.
 
 ```java
-public void sendMessage(String topicName, String message) {
-    final ListenableFuture<SendResult<String, String>> future = kafkaTemplate.send(topicName, message);
-    future.addCallback(new ListenableFutureCallback<SendResult<String, String>>() {
-         @Override
-         public void onSuccess(SendResult<String, String> result) {
-             log.info("Kafka sent message='{}' with offset={}", message, result.getRecordMetadata().offset());
-         }
- 
-         @Override
-         public void onFailure(Throwable ex) {
-             log.error("Kafka unable to send message='{}'", message, ex);
-             throw new RuntimeException();
-         }
-     });
-}
+    public void sendMessage(String topicName, String message) {
+        final ListenableFuture<SendResult<String, String>> future = kafkaTemplate.send(topicName, message);
+        future.addCallback(new ListenableFutureCallback<SendResult<String, String>>() {
+            @Override
+            public void onFailure(Throwable ex) {
+                ex.printStackTrace();
+                throw new RuntimeException();
+            }
+
+            @Override
+            public void onSuccess(SendResult<String, String> result) {
+                log.info("Kafka sent message='{}'", message);
+            }
+        });
+    }
 ```
 
 Controller나 다른 요소에서 위 sendMessage 메서드를 호출하면 메시지 전송이 된다.

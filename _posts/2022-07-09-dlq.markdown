@@ -16,12 +16,11 @@ SQS Queue로 전송된 메시지를 어떤 이유로 인해 컨슈머에서 수�
 - 컨슈머 소스코드의 문제로 메시지 처리 도중 Exception이 발생하여 정상적인 처리에 실패했을 때
 
   - SQL의 문제가 있을 수 있다. (필드명을 잘못 써서 없는 컬럼을 참조하려 CRUD에러가 났거나..)
-  - 메시지 형식이 JSON이라면 매퍼를 이용해서 DTO나 Entity 객체로 컨버팅할텐데 Data Type 등의 차이로 파싱할 때 에러가 날 수 있다.
+  - 메시지 형식이 JSON이라면 매퍼를 이용해서 DTO나 Entity 객체로 컨버팅할텐데 Data Type 등의 차이로 파싱할 때 에러가 날 수 있다.  
     **→ 이 경우는 컨슈머를 수정하여 배포한 후 DLQ에 들어있는 메시지를 꺼내 원래 적재됐었던 본래의 Queue로 보내고 난 뒤 DLQ에서 삭제**
-
 - 메시지 내용의 문제로 컨슈머에서 처리 불가능할 때
-  - 메시지를 받아서 RDBMS 같은 것에 적재할 경우, primary key에 해당되는 내용이 미비되어 INSERT시 에러가 발생할 수 있다. 보통 Producer 쪽을 수정해줘야 한다.
-    **→ 내용 확인하고 Producer 수정한 뒤 재전송하고 나서 DLQ에 적재된 메시지 삭제 (사실 이게 가장 안전하고 주로 쓰게 되는 방법)**
+  - 메시지를 받아서 RDBMS 같은 것에 적재할 경우, primary key에 해당되는 내용이 미비되어 INSERT시 에러가 발생할 수 있다. 보통 Producer 쪽을 수정해줘야 한다.  
+    **→ 내용 확인하고 Producer 수정한 뒤 재전송하고 나서 DLQ에 적재된 메시지 삭제 (사실 이게 가장 안전하고 주로 쓰게 되는 방법)**  
     **→ DLQ에 적재된 메시지를 변조하고 나서 Queue로 보내고 난 뒤 DLQ에서 삭제**
 
 그런데 이슈가 있다.
@@ -29,7 +28,7 @@ SQS Queue로 전송된 메시지를 어떤 이유로 인해 컨슈머에서 수�
 SQS에는 메시지마다 할당된 고유의 ID가 있는데... 이 ID를 가지고 특정 메시지만을 선별해서 다른 Queue로 보내거나 내용을 변조해서 재전송하거나 할 수 있을까? 하면  
 그것이 불가능하다.
 
-> No. It is not possible to retrieve a specific message from an Amazon SQS queue. You can call ReceiveMessage() to get 1 to 10 messages, but you cannot choose which messages to receive.
+> No. It is not possible to retrieve a specific message from an Amazon SQS queue. You can call ReceiveMessage() to get 1 to 10 messages, but you cannot choose which messages to receive.  
 [https://stackoverflow.com/questions/61785839/get-particular-message-from-amazon-sqs](https://stackoverflow.com/questions/61785839/get-particular-message-from-amazon-sqs)
 
 SQS에서 특정 메시지만 수신받는 것은 불가능하다. AWS에서 제공하고 있는 SDK의 Amazon SQS Client에서는 한번에 수신받을 수 있는 메시지 수를 설정할 수 있는데 최대치가 10이다..
@@ -76,19 +75,23 @@ public class DlqProcessingService {
         this.messagingTemplate = messagingTemplate;
     }
 
-    public void transferDlQMessages(String targetQueueName) {   // DLQ 메시지를 보낼 Queue 이름을 매개변수로 받음
+    public void transferDlQMessages(String targetQueueName) {   
+		// DLQ 메시지를 보낼 Queue 이름을 매개변수로 받음
         boolean isContinue = true;
-        while (isContinue) {                                    // isContinue가 true이면 계속 반복됨
+        while (isContinue) {    // isContinue가 true이면 계속 반복됨
             final ReceiveMessageRequest request = new ReceiveMessageRequest(DLQ).withMaxNumberOfMessages(10);
             final List<Message> messages = amazonSQS.receiveMessage(request).getMessages();     // DLQ에서 메시지 수신 (최대 10개)
-            if (messages.size() == 0) {                         // 수신 메시지가 0개이면 더 이상 처리 대상이 없다고 보고 순환문을 빠져나온다. (isContinue = false)
+            if (messages.size() == 0) {
+				// 수신 메시지가 0개이면 순환문을 빠져나온다. (isContinue = false)
                 isContinue = false;
                 return;
             }
             messages.forEach(message -> {
-                messagingTemplate.send(targetQueueName, MessageBuilder.withPayload(message.getBody()).build()); // 다른 Queue로 메시지 내용을 그대로 전송한다.
-                amazonSQS.deleteMessage(new DeleteMessageRequest(DLQ, message.getReceiptHandle()));             // 전송하고 나서 DLQ 메시지를 삭제한다.
-            })
+                messagingTemplate.send(targetQueueName, MessageBuilder.withPayload(message.getBody()).build()); 
+				// 다른 Queue로 메시지 내용을 그대로 전송한다.
+                amazonSQS.deleteMessage(new DeleteMessageRequest(DLQ, message.getReceiptHandle()));             
+				// 전송하고 나서 DLQ 메시지를 삭제한다.
+            });
         }
     }
 }

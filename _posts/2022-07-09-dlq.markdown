@@ -1,8 +1,8 @@
 ---
 layout: post
-title: "SQS DLQ(Dead Letter Queue)의 메시지를 처리"
-date: 2022-07-09 22:54:00
-categories: AWS SpringCloudAWS SQS
+title: "SQS DLQ (Dead Letter Queue) 의 메시지를 처리"
+date: 2022-07-09 23:25:00
+categories: AWS SpringCloudAWS
 ---
 
 SQS Queue로 전송된 메시지를 어떤 이유로 인해 컨슈머에서 수신 처리를 하지 못하면 DLQ(Dead Letter Queue)로 Re-Drive를 하게 설정할 수 있다.
@@ -124,4 +124,4 @@ Controller를 만들어서 외부에서 호출해서 쓸 수 있게 해도 되�
     }
 ```
 
-가급적이면 이걸 쓰지 않게 사전에 준비 잘하자... ^^;
+어지간하면 이걸 쓰는 일이 없게 사전에 준비 잘하자... ^^;

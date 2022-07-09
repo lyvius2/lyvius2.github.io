@@ -1,7 +1,7 @@
 ---
-layout: post
-title: "SQS DLQ (Dead Letter Queue) 의 메시지를 처리"
-date: 2022-07-09 23:25:00
+layout: post  
+title:  "SQS DLQ의 메시지를 처리"  
+date:   2022-07-09 23:25:00  
 categories: AWS SpringCloudAWS
 ---
 

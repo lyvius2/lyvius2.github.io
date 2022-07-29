@@ -1,38 +1,47 @@
 ---
 layout: page
-title: About me 
+title: About me
 ---
 
 대학에서 정보시스템(MIS)를 전공하고 2010년 11월부터 개발자로 일하고 있습니다.
 
 ##### Github
-+ [https://github.com/lyvius2][github]
 
-##### 보유 기술
-+ **Programming Languages :** JAVA, SQL, JavaScript, HTML, CSS, Python
-+ **Platform :** Node.js, Electron, IONIC
-+ **Frameworks :** Spring Framework, Struts2, JPA, myBatis, Express, AngularJS(1.8), Vue.js
-+ **Middleware :** Apache/Tomcat, Nginx, JEUS, webtob
-+ **Database :** OracleDB, MS SQL Server, Postgresql, MongoDB
+- [https://github.com/lyvius2][github]
 
-##### 수료 교육
-+ **Netflix OSS, Spring Cloud 를 활용한 MSA 기초** (T아카데미, 2018.12.12)
-+ **ReactJS** (한국소프트웨어기술진흥협회, 2018.12.3 ~ 2018.12.7)
-+ **JPA 프로그래밍** (T아카데미, 2018.11.22)
-+ **NoSQL 프로그래밍** (한국정보기술연구원, 2018.7.4 ~ 2018.7.6)
-+ **웹 개발자를 위한 Spring Framework 4 실무** (중앙HTA, 2016.6.24 ~ 2016.7.15)
-+ **AWS Essentials** (T아카데미, 2015.12.28)
-+ **클라이언트사이드 MVC프레임워크 AngularJS** (에이콘아카데미, 2015.127 ~ 2015.12.11)
-+ **Node.js 프로그래밍** (T아카데미, 2015.11.15 ~ 2015.11.19)
-+ **하이브리드 앱 개발** (IONIC & AngularJS) (아카데미 티모, 2015.8.21 ~ 2015.9.11)
-+ **파이썬 프로그래밍** (HBI기술연구소, 2015.6.12 ~ 2015.6.26)
-+ **HTML5! Mobile Web & Hybrid App** (삼성SDS멀티캠퍼스, 2013.7.28 ~ 2013.8.1)
-+ **JEUS Administration** (티맥스소프트, 2013.2.5 ~ 2013.2.7)
-+ **Eclipse 를 활용한 자바 프로젝트 실무** (삼성SDS멀티캠퍼스, 2011.2.13 ~ 2011.2.17)
+##### Work Experience
 
-##### 기타
-+ 일본어능력시험(JLPT) 1급
-+ 여행 블로그 : [https://blog.naver.com/lyvius2][blog]
+* __커머스 :__ JAVA 서버 백엔드 개발자 (2019.04.01 ~ 현재)
+  * AWS 클라우드 전환 프로젝트 리딩
+  * Producer, Consumer 개발
+  * API 개발
+  * 제휴 프로세스 구축 리딩 및 개발
+* __대기업SI :__ JAVA 웹 개발자 / 시스템 운영 (2017.12.18 ~ 2019.03.29)
+  * 사회공헌 재단 웹사이트 및 백오피스 관리자 개발
+  * 정산시스템 매니징
+  * 웹서버 인프라 고도화
+* __언론사 :__ JAVA 웹 개발자 (2016.05.09 ~ 2017.08.25)
+  * CMS 및 포토아카이브 구축
+  * API, 데이터 마이그레이션 툴 개발
+* __여행사 :__ JAVA, Node.js 웹 개발자 / IT매니저 (2010.11.15 ~ 2016.04.15)
+  * 항공 예약 시스템 AMADEUS I/F 개발
+  * 출장 관리 시스템 BTMS 개발
+  * 렌터카 출입고 관리 시스템 개발
+
+##### Technical Skills
+
+- **Programming Languages :** JAVA(5 ~ 11), SQL, JavaScript, Python, HTML, CSS
+- **Platform :** Node.js
+- **Frameworks :** Spring Framework, SpringBoot, Struts2, Express, Electron, AngularJS(1.8), Vue.js
+- **ORM :** JPA, QueryDsl, myBatis
+- **Database :** OracleDB, MS SQL Server, RDS(MySQL), MongoDB
+- **Infra :** Linux, WindowsNT, AWS (EC2, Docker, Kubernetes)
+- **Middleware :** Apache/Tomcat, Nginx, JEUS, webtob
+
+##### ETC
+
+- 일본어능력시험(JLPT) 1급
+- 여행 블로그 : [https://blog.naver.com/lyvius2][blog]
 
 [github]: https://github.com/lyvius2
 [blog]: https://blog.naver.com/lyvius2
